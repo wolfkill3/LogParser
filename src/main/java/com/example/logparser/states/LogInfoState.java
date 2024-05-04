@@ -1,11 +1,11 @@
-package com.example.logparser.service;
+package com.example.logparser.states;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class LogInfoService {
+public class LogInfoState {
     private final double minAvailability;
     private final Logger logger;
     private final int maxLoad;
@@ -14,7 +14,7 @@ public class LogInfoService {
     private Date start;
     private Date end;
 
-    public LogInfoService(double minAvailability, int maxLoad, Logger logger) {
+    public LogInfoState(double minAvailability, int maxLoad, Logger logger) {
         this.minAvailability = minAvailability;
         this.maxLoad = maxLoad;
         this.logger = logger;
