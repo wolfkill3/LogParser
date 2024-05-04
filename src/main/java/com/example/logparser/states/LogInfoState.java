@@ -1,5 +1,6 @@
 package com.example.logparser.states;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
@@ -7,6 +8,7 @@ import java.util.logging.Logger;
 
 public class LogInfoState {
     private final double minAvailability;
+    private final DateFormat format;
     private final Logger logger;
     private final int maxLoad;
     private int totalAvailability = 0;
@@ -18,6 +20,7 @@ public class LogInfoState {
         this.minAvailability = minAvailability;
         this.maxLoad = maxLoad;
         this.logger = logger;
+        this.format = new SimpleDateFormat("dd/MM/yyyy:hh:mm:ss");
     }
 
     public void add(Date current, Boolean isValid) {
@@ -45,10 +48,10 @@ public class LogInfoState {
 
     public void write() {
         if (currentLoad > 0) {
-            var logString = getLogInfo();
+            var availability = getBucketAvailability();
 
-            if (logString.availability() < minAvailability) {
-                logger.log(Level.INFO, "Add row: " + logString);
+            if (availability < minAvailability) {
+                logger.log(Level.INFO, String.format("[%s]        [%s]        %.1f", format.format(start), format.format(end), availability));
             }
 
             clear();
@@ -61,22 +64,10 @@ public class LogInfoState {
         return ((double) totalAvailability / currentLoad) * 100.;
     }
 
-
-    private LogInfo getLogInfo() {
-        return new LogInfo(start, end, getBucketAvailability());
-    }
-
     private void clear() {
         totalAvailability = 0;
         currentLoad = 0;
         start = null;
         end = null;
-    }
-
-    public record LogInfo(Date start, Date end, double availability) {
-        public String toString() {
-            var format = new SimpleDateFormat("dd/MM/yyyy:hh:mm:ss");
-            return String.format("[%s]        [%s]        %.1f", format.format(start), format.format(end), availability);
-        }
     }
 }
