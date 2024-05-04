@@ -12,26 +12,26 @@ class LogInfoStateTest {
 
     @Test
     public void addTest() {
-        var service = new LogInfoState(99.9, 100, logger);
-        Assertions.assertDoesNotThrow(() -> service.add(new Date(), true));
-        Assertions.assertDoesNotThrow(() -> service.add(new Date(), false));
+        var state = new LogInfoState(99.9, 100, logger);
+        Assertions.assertDoesNotThrow(() -> state.add(new Date(), true));
+        Assertions.assertDoesNotThrow(() -> state.add(new Date(), false));
     }
 
     @Test
     public void isNotFullTest() {
-        var service = new LogInfoState(99.9, 1, logger);
-        Assertions.assertTrue(service.isNotFull());
-        service.add(new Date(), true);
-        Assertions.assertFalse(service.isNotFull());
+        var state = new LogInfoState(99.9, 1, logger);
+        Assertions.assertTrue(state.isNotFull());
+        state.add(new Date(), true);
+        Assertions.assertFalse(state.isNotFull());
     }
 
     @Test
     public void writeTest() {
-        var emptyService = new LogInfoState(99.9, 100, logger);
-        Assertions.assertThrows(RuntimeException.class, emptyService::write);
+        var emptyState = new LogInfoState(99.9, 100, logger);
+        Assertions.assertThrows(RuntimeException.class, emptyState::write);
 
-        var notEmptyService = new LogInfoState(99.9, 100, logger);
-        notEmptyService.add(new Date(), true);
-        Assertions.assertDoesNotThrow(() -> notEmptyService.write());
+        var notEmptyState = new LogInfoState(99.9, 100, logger);
+        notEmptyState.add(new Date(), true);
+        Assertions.assertDoesNotThrow(() -> notEmptyState.write());
     }
 }
