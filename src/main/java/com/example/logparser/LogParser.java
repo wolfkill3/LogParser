@@ -1,6 +1,6 @@
 package com.example.logparser;
 
-import com.example.logparser.service.LogProcessService;
+import com.example.logparser.services.LogProcessService;
 
 import java.util.Arrays;
 import java.util.HashMap;

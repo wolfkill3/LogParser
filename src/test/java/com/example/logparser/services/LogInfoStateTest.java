@@ -1,4 +1,4 @@
-package com.example.logparser.service;
+package com.example.logparser.services;
 
 import com.example.logparser.states.LogInfoState;
 import org.junit.jupiter.api.Assertions;

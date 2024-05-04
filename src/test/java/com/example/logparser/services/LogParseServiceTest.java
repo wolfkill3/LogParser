@@ -1,4 +1,4 @@
-package com.example.logparser.service;
+package com.example.logparser.services;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;

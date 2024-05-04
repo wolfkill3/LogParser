@@ -1,4 +1,4 @@
-package com.example.logparser.service;
+package com.example.logparser.services;
 
 import java.text.DateFormat;
 import java.text.ParseException;
